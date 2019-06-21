@@ -26,12 +26,12 @@ public FunctionCall[] getFunctionCalls(File file, String filter) {
     // Example line from logcat:
     // 06-21 14:51:15.842 11351 11351 D TrafficLog: LACTOSIS: refreshAvatars::start
     String[] tokens = line.split(" ");
-    if (tokens.length < 7) {
+    if (tokens.length < 6) {
       println("Error reading line: " + line);
       continue;
     }
     TimeMoment moment = new TimeMoment(tokens[1]);
-    String[] function = tokens[7].split("::");
+    String[] function = tokens[tokens.length - 1].split("::");
     String functionName = function[0];
     boolean isEnd = function[1].equals("end");
 
