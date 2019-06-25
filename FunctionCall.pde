@@ -16,7 +16,10 @@ class FunctionCall {
   }
 }
 
-public FunctionCall[] getFunctionCalls(File file, String filter) {
+/**
+ * @return A list of arrays of function calls. Each array in the list represents one function. Elements of the array are the individual calls in time of the same function
+ */
+public ArrayList<FunctionCall[]> getFunctionCalls(File file, String filter) {
   int createdFunctionCalls = 0;
   HashMap<String, ArrayList<FunctionCall>> functionCalls = new HashMap<String, ArrayList<FunctionCall>>();
   String[] lines = loadStrings(file);
@@ -71,12 +74,22 @@ public FunctionCall[] getFunctionCalls(File file, String filter) {
     }
   }
 
-  FunctionCall[] returning = new FunctionCall[createdFunctionCalls];
-  int index = 0;
-  for (ArrayList<FunctionCall> functionCallList : functionCalls.values()) {
-    for (FunctionCall fc : functionCallList) {
-      returning[index++] = fc;
-    }
+  //FunctionCall[] returning = new FunctionCall[createdFunctionCalls];
+  //int index = 0;
+  //for (ArrayList<FunctionCall> functionCallList : functionCalls.values()) {
+  //  for (FunctionCall fc : functionCallList) {
+  //    returning[index++] = fc;
+  //  }
+  //}
+  
+  ArrayList<FunctionCall[]> returning = new ArrayList<FunctionCall[]>();
+  for (ArrayList<FunctionCall> functionCallList: functionCalls.values()) {
+   FunctionCall[] arr = new FunctionCall[functionCallList.size()];
+   int i = 0;
+   for (FunctionCall fc: functionCallList) {
+    arr[i++] = fc; 
+   }
+   returning.add(arr);
   }
 
   return returning;

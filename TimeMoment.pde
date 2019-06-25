@@ -56,6 +56,10 @@ class TimeMoment {
   }
 }
 
+public long duration(TimeMoment from, TimeMoment to) {
+  return to.toMs() - from.toMs();
+}
+
 public TimeMoment getTimeMomentMaxValue() {
   return new TimeMoment(23, 59, 59, 999);
 }
